@@ -12,10 +12,10 @@ A machine learning project that classifies underwater objects as **rocks or mine
 | Step | Description |
 |------|-------------|
 | 📥 Data Collection | Sonar dataset containing 208 samples and 60 frequency features |
-| 🧹 Data Preprocessing | Handling missing values, feature scaling, and encoding labels |
-| ✂️ Data Splitting | Dividing data into training and testing sets (80/20 split) |
-| 🤖 Model Training | Logistic Regression model trained on sonar features |
-| 📊 Evaluation | Measuring accuracy, precision, recall, and confusion matrix |
+| 🧹 Understand data | mean, std, balance, shape, missing values |
+| ✂️ Data Splitting  | Dividing data into training and testing sets (90/10 split) |
+| 🤖 Model Training  | Logistic Regression model trained on sonar features |
+| 📊 Evaluation      | Measuring accuracy, precision, recall, and confusion matrix |
 
 ## 🛠️ Tech Stack
 ![Python](https://img.shields.io/badge/Python-3.x-blue)
@@ -25,16 +25,14 @@ A machine learning project that classifies underwater objects as **rocks or mine
 
 ## 📁 Project Structure
 ```
-├── data/
-│   └── sonar.csv
-├── notebook/
-│   └── rock_vs_mine.ipynb
+├── sonar_data.csv (data file)
+├── model.ipynb    (model code)
 ├── workflow.png
-└── README.md
+└── README.md      (project decription)
 ```
 
 ## 📈 Results
 | Metric | Score |
 |--------|-------|
-| Training Accuracy | XX% |
-| Testing Accuracy  | XX% |
+| Training Accuracy | 83.4% |
+| Testing Accuracy  | 76% |
