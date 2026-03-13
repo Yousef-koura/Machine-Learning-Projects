@@ -23,6 +23,42 @@ A machine learning project that classifies underwater objects as **rocks or mine
 ![Pandas](https://img.shields.io/badge/Pandas-Data-green)
 ![NumPy](https://img.shields.io/badge/NumPy-Numerical-lightblue)
 
+## 🧠 How Logistic Regression Works
+ <p align="center">
+  <img src="image-1.png" alt="logestic Regression Workflow" width="400"/>
+</p>
+
+### Step 1 — Linear Equation (Z)
+Each of the 60 sonar features is multiplied by a weight and summed:
+```
+Z = w1*x1 + w2*x2 + ... + w60*x60 + bias
+```
+ 
+### Step 2 — Sigmoid Function
+Z is passed through the sigmoid function which squishes any value into a probability between 0 and 1:
+```
+sigmoid(Z) = 1 / (1 + e^-Z)
+```
+ 
+### Step 3 — Decision
+```
+probability >= 0.5  →  Mine 💣
+probability  < 0.5  →  Rock 🪨
+```
+ 
+### Step 4 — Learning Loop
+```
+Make Prediction
+      ↓
+Loss Function (Cross Entropy)   ← measures HOW wrong
+      ↓
+Gradient Descent                ← fixes the weights
+      ↓
+Repeat until loss is minimal ✅
+```
+ 
+---
+
 ## 📁 Project Structure
 ```
 ├── sonar_data.csv (data file)
