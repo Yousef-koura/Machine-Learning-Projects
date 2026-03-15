@@ -1,7 +1,7 @@
 # 🩺 Diabetes Prediction — Classification Using SVM
 
 ## 📌 Project Overview
-A machine learning project that predicts whether a patient is **diabetic or not** based on medical diagnostic data. The model is trained on the Pima Indians Diabetes dataset using a **Support Vector Machine (SVM)** classifier.
+A machine learning project that predicts whether a patient is **diabetic or not** based on medical diagnostic data. The model is trained on the Pima Indians Diabetes dataset using a **Support Vector Machine (SVM)** classifier with a linear kernel.
 
 ---
 
@@ -13,11 +13,13 @@ A machine learning project that predicts whether a patient is **diabetic or not*
 
 | Step | Description |
 |------|-------------|
-| 📥 Data Collection | Diabetes dataset containing 768 samples and 8 medical features |
-| 🧹 Understand Data | Mean, std, balance, shape, missing values |
-| ✂️ Data Splitting  | Dividing data into training and testing sets (80/20 split) |
-| 🤖 Model Training  | SVM classifier trained on patient medical features |
-| 📊 Evaluation      | Measuring accuracy, precision, recall, and confusion matrix |
+| 📥 Data Collection | Diabetes dataset containing 768 samples and 9 columns (8 features + 1 label) |
+| 🧹 Understand Data | Checked mean, std, class balance, shape, and missing values |
+| ⚖️ Standardization | Applied StandardScaler to normalize all 8 features |
+| ✂️ Data Splitting  | Divided data into training and testing sets (80/20 split) |
+| 🤖 Model Training  | SVM classifier with linear kernel trained on standardized features |
+| 📊 Evaluation      | Measured training & testing accuracy|
+| 🔮 Prediction      | Predicts diabetic or not for a new patient input |
 
 ---
 
@@ -32,62 +34,59 @@ A machine learning project that predicts whether a patient is **diabetic or not*
 ## 🧠 How SVM Works
 
 <p align="center">
-  <img src="svm.png" alt="SVM Workflow" width="400"/>
+  <img src="image.png" alt="SVM Workflow" width="400"/>
 </p>
 
-### Step 1 — Plot the Data
-Each patient is represented as a point in space based on their medical features:
-```
-x-axis → feature 1 (e.g. glucose level)
-y-axis → feature 2 (e.g. BMI)
-```
-
-### Step 2 — Find the Hyperplane
+### Step 1 — Find the Hyperplane
 SVM finds the **best line (or hyperplane)** that separates diabetic from non-diabetic patients:
 ```
 Class 1: Diabetic    →  one side of the hyperplane
 Class 0: No Diabetes →  other side of the hyperplane
 ```
 
-### Step 3 — Maximize the Margin
-SVM doesn't just find any line — it finds the one with the **largest margin** between both classes:
+### Step 2 — Maximize the Margin
+SVM finds the hyperplane with the **largest margin** between both classes:
 ```
 margin = distance between hyperplane and nearest points (support vectors)
 
 Larger margin → better generalization → better predictions ✅
 ```
 
-### Step 4 — Decision
+### Step 3 — Decision
 ```
 point on positive side  →  Diabetic 🔴
 point on negative side  →  Not Diabetic 🟢
 ```
 
-### Step 5 — Learning
+---
+
+## ⚠️ Why Standardization Matters
+
+SVM is sensitive to feature scale. Without standardization, features with large ranges dominate the model:
+
 ```
-Find support vectors (closest points to hyperplane)
-      ↓
-Maximize the margin between classes
-      ↓
-Optimal hyperplane found ✅
-      ↓
-Evaluate with Accuracy Score
+Glucose  →  0 to 200   ← dominates without scaling ❌
+BMI      →  0 to 50
 ```
+
+After `StandardScaler` all features are on the same scale ✅
+
+> **Important:** Use `scaler.transform()` on new inputs — NOT `fit_transform()` — to apply the same scale learned during training.
 
 ---
 
 ## 📁 Project Structure
 ```
-├── diabetes.csv    (data file)
-├── model.ipynb     (model code)
+├── diabetes_data.csv   (data file)
+├── model.ipynb         (model code)
 ├── svm.png
-└── README.md       (project description)
+└── README.md           (project description)
 ```
-
 ---
 
 ## 📈 Results
+
 | Metric | Score |
 |--------|-------|
-| Training Accuracy | XX% |
-| Testing Accuracy  | XX% |
+| Training Accuracy | 78% |
+| Testing Accuracy  | 77.9% |
