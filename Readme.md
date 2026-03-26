@@ -100,10 +100,14 @@ df.describe()                       # check min/max vs mean
 
 ```python
 # IQR Method
-Q1 = df['col'].quantile(0.25)
-Q3 = df['col'].quantile(0.75)
+# first count the outliers for age
+Q1 = data['age'].quantile(0.25)
+Q3 = data['age'].quantile(0.75)
 IQR = Q3 - Q1
-df = df[(df['col'] >= Q1 - 1.5*IQR) & (df['col'] <= Q3 + 1.5*IQR)]
+lower_bound = Q1 - 1.5*IQR
+upper_bound = Q3 + 1.5*IQR
+
+age_outliers = data[(data['age'] < lower_bound) | (data['age'] > upper_bound)]
 
 # Z-Score Method
 from scipy import stats
