@@ -73,10 +73,7 @@ df.isnull().sum() / len(df) * 100          # percentage missing
 | **Fill with Median** | `df['col'].fillna(df['col'].median())` | Numerical with outliers ✅ |
 | **Fill with Mode** | `df['col'].fillna(df['col'].mode()[0])` | Categorical columns |
 | **Fill with Value** | `df.fillna(0)` or `df.fillna('')` | Specific known value |
-| **Forward Fill** | `df.fillna(method='ffill')` | Time series data |
-| **Backward Fill** | `df.fillna(method='bfill')` | Time series data |
 | **KNN Imputer** | `KNNImputer(n_neighbors=5)` | Complex datasets, most accurate |
-| **Interpolation** | `df['col'].interpolate()` | Sequential/time series data |
 
 > ⚠️ **Rule:** Always handle missing values BEFORE encoding or scaling.
 
@@ -151,8 +148,6 @@ df['Size'] = df['Size'].map({'Small': 0, 'Medium': 1, 'Large': 2}).astype(int)
 |--------|---------|-------|-----------------------|----------|
 | **StandardScaler** | (x - mean) / std | ~-3 to +3 | ❌ Yes | SVM, Logistic Regression, Neural Networks |
 | **MinMaxScaler** | (x - min) / (max - min) | 0 to 1 | ❌ Yes | Neural Networks, image data |
-| **RobustScaler** | (x - median) / IQR | varies | ✅ No | Data with outliers |
-| **Normalizer** | scales each row to length 1 | 0 to 1 | ✅ No | NLP, text data |
 | **Log Transform** | log(x + 1) | varies | ✅ No | Highly skewed data |
 
 ```python
@@ -218,9 +213,6 @@ x_val, x_test, y_val, y_test     = train_test_split(x_temp, y_temp, test_size=0.
 | **Linear Regression** | `from sklearn.linear_model import LinearRegression` | Simple linear relationships |
 | **Ridge Regression** | `from sklearn.linear_model import Ridge` | Linear + L2 regularization |
 | **Lasso Regression** | `from sklearn.linear_model import Lasso` | Linear + L1 regularization (feature selection) |
-| **XGBoost Regressor** | `from xgboost import XGBRegressor` | Complex tabular data ✅ |
-| **Random Forest Regressor** | `from sklearn.ensemble import RandomForestRegressor` | Non-linear relationships |
-| **SVR** | `from sklearn.svm import SVR` | Small to medium datasets |
 
 ---
 
@@ -233,8 +225,7 @@ x_val, x_test, y_val, y_test     = train_test_split(x_temp, y_temp, test_size=0.
 | **Decision Tree** | `from sklearn.tree import DecisionTreeClassifier` | Interpretable model |
 | **Random Forest** | `from sklearn.ensemble import RandomForestClassifier` | General purpose ✅ |
 | **XGBoost** | `from xgboost import XGBClassifier` | Competitions, best accuracy 🏆 |
-| **KNN** | `from sklearn.neighbors import KNeighborsClassifier` | Simple, small datasets |
-| **Naive Bayes** | `from sklearn.naive_bayes import GaussianNB` | NLP, text classification |
+
 
 ### How They Work (Brief)
 
